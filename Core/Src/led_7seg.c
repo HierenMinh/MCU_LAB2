@@ -14,7 +14,7 @@
 
 const int MAX_LED = 4;
 int index_led = 0;
-extern int led_buffer[4] = {1, 2, 3, 4};
+int led_buffer[4] = {1, 2, 3, 4};
 void update7SEG(int index) {
 	switch (index) {
 	case 0:
@@ -73,5 +73,7 @@ void display7SEG(int num) {
 	HAL_GPIO_WritePin(SEG5_GPIO_Port, SEG5_Pin, (m & (0x01 << 5)) ? SEG_ON : SEG_OFF); // f
 	HAL_GPIO_WritePin(SEG6_GPIO_Port, SEG6_Pin, (m & (0x01 << 6)) ? SEG_ON : SEG_OFF); // g
 }
+
+
 
 

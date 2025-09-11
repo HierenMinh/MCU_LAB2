@@ -30,6 +30,7 @@
 #include "led_7seg.h"
 #include "ex1.h"
 #include "ex2.h"
+#include "ex3.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -106,6 +107,7 @@ int main(void)
 	  if(isTimerExpired(0)) {
 		  ex3Run();
 		  setTimer(0, 50);
+
 	  }
     /* USER CODE BEGIN 3 */
   }

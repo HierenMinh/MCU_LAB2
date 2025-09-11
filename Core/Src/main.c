@@ -104,12 +104,8 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  if(isTimerExpired(0)) {
-		  ex1Run();
+		  ex3Run();
 		  setTimer(0, 50);
-	  }
-	  if(isTimerExpired(1)) {
-		  ex2Run();
-		  setTimer(1, 50);
 	  }
     /* USER CODE BEGIN 3 */
   }

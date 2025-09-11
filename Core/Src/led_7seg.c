@@ -9,6 +9,46 @@
 #define SEG_OFF 1
 #define SEG_ON 0
 
+#define LED_OFF 1
+#define LED_ON 0
+
+const int MAX_LED = 4;
+int index_led = 0;
+extern int led_buffer[4] = {1, 2, 3, 4};
+void update7SEG(int index) {
+	switch (index) {
+	case 0:
+		display7SEG(led_buffer[0]);
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, LED_ON);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, LED_OFF);
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, LED_OFF);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, LED_OFF);
+		break;
+	case 1:
+		display7SEG(led_buffer[1]);
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, LED_OFF);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, LED_ON);
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, LED_OFF);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, LED_OFF);
+		break;
+	case 2:
+		display7SEG(led_buffer[2]);
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, LED_OFF);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, LED_OFF);
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, LED_ON);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, LED_OFF);
+		break;
+	case 3:
+		display7SEG(led_buffer[3]);
+		HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, LED_OFF);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, LED_OFF);
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, LED_OFF);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, LED_ON);
+		break;
+	default:
+		break;
+	}
+}
 void display7SEG(int num) {
     const uint8_t lut[10] = {
 		0x3F, // 0: a b c d e f

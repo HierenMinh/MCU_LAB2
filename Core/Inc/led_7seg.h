@@ -10,7 +10,9 @@
 
 #include "main.h"
 
+
 void display7SEG(int num);
+void update7SEG(int num);
 
 
 

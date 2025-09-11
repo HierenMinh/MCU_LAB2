@@ -31,6 +31,7 @@
 #include "ex1.h"
 #include "ex2.h"
 #include "ex3.h"
+#include "clock_ex.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -52,7 +53,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+static int index = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -104,15 +105,19 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  if(isTimerExpired(0)) {
-		  ex3Run();
-		  setTimer(0, 25);
-
-	  }
 	  if(isTimerExpired(1)) {
 		  ex2Run();
+		  clockRun();
 		  setTimer(1, 100);
 	  }
+	  if(isTimerExpired(3)) {
+		  update7SEG(index++);
+		  if(index >= 4) {
+		     index = 0;
+		  }
+		  setTimer(3, 25);
+	  }
+
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -156,8 +161,8 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void initTimer() {
 	HAL_TIM_Base_Start_IT(&htim2);
-	ex1Init();
 	ex2Init();
+	setTimer(3, 25);
 }
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM2) {

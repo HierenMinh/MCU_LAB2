@@ -10,6 +10,7 @@
 
 #include "main.h"
 
+extern int led_buffer[];
 
 void display7SEG(int num);
 void update7SEG(int num);

@@ -12,10 +12,6 @@
 int flag_timer[MAX_TIMER];
 int counter_timer[MAX_TIMER];
 
-struct Node {
-
-};
-
 void setTimer(int index, int duration) {
 	counter_timer[index] = duration;
 	flag_timer[index] = 0;

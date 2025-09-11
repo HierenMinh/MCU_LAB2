@@ -107,6 +107,10 @@ int main(void)
 		  ex1Run();
 		  setTimer(0, 50);
 	  }
+	  if(isTimerExpired(1)) {
+		  ex2Run();
+		  setTimer(1, 50);
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -151,6 +155,7 @@ void SystemClock_Config(void)
 void initTimer() {
 	HAL_TIM_Base_Start_IT(&htim2);
 	ex1Init();
+	ex2Init();
 }
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM2) {

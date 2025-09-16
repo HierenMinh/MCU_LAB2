@@ -32,6 +32,7 @@
 #include "ex2.h"
 #include "ex3.h"
 #include "clock_ex.h"
+#include "led_matrix.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -53,7 +54,8 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-static int index = 0;
+static int led7seg_index = 0;
+static int ledmatrix_index = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -111,13 +113,23 @@ int main(void)
 		  setTimer(1, 100);
 	  }
 	  if(isTimerExpired(3)) {
-		  update7SEG(index++);
-		  if(index >= 4) {
-		     index = 0;
+		  update7SEG(led7seg_index++);
+		  if(led7seg_index >= 4) {
+		     led7seg_index = 0;
 		  }
 		  setTimer(3, 25);
 	  }
-
+	  if(isTimerExpired(TIMER_MATRIX)) {
+		  updateLEDMatrix(ledmatrix_index++);
+		  if(ledmatrix_index >= 8) {
+		     ledmatrix_index = 0;
+		  }
+		  setTimer(TIMER_MATRIX, TIME_MATRIX);
+	  }
+	  if(isTimerExpired(TIMER_SHIFT)) {
+		  shift_left();
+		  setTimer(TIMER_SHIFT, TIME_SHIFT);
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -163,6 +175,9 @@ void initTimer() {
 	HAL_TIM_Base_Start_IT(&htim2);
 	ex2Init();
 	setTimer(3, 25);
+	setTimer(TIMER_MATRIX, TIME_MATRIX);
+	setTimer(TIMER_SHIFT, TIME_SHIFT);
+
 }
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM2) {

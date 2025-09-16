@@ -6,7 +6,7 @@
  */
 #include "software_timer.h"
 
-#define MAX_TIMER 7
+#define MAX_TIMER 5
 
 
 int flag_timer[MAX_TIMER];

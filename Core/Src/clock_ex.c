@@ -15,17 +15,17 @@ void updateClockBuffer() {
 }
 
 void clockRun() {
-	  second++;
-	  if (second >= 60) {
-		  second = 0;
-		  minute++;
-	  }
-	  if (minute >= 60) {
-		  minute = 0;
-		  hour++;
-	  }
-	  if (hour >= 24) {
-		  hour = 0;
-	  }
-	  updateClockBuffer();
+	second++;
+	if (second >= 60) {
+	  second = 0;
+	  minute++;
+	}
+	if (minute >= 60) {
+	  minute = 0;
+	  hour++;
+	}
+	if (hour >= 24) {
+	  hour = 0;
+	}
+	updateClockBuffer();
 }

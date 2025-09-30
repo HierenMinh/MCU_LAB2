@@ -1,11 +1,14 @@
 /*
- * led_matrx.c
- *
- *  Created on: Sep 16, 2025
- *      Author: qwein
+ * @file:	led_matrix.c
+ * @brief:	8x8 led matrix source file
+ *  Created on: Sep 10, 2025
+ *      Author: huy
  */
+
+/* Private includes ----------------------------------------------------------*/
 #include "led_matrix.h"
 
+/* Private defines -----------------------------------------------------------*/
 #define matrix_row 8
 #define matrix_col 8
 
@@ -60,16 +63,15 @@ static uint16_t row_pin[8] =
 
 static uint8_t charA[matrix_row] =
 {
-		0b00011000,
-		0b00111100,
-		0b00100100,
-		0b01100110,
-		0b01111110,
-		0b01100110,
-		0b01100110,
-		0b01100110
+    0b01111110,
+    0b11000011,
+    0b11000011,
+    0b11111111,
+    0b11111111,
+    0b11000011,
+    0b11000011,
+    0b11000011
 };
-
 
 
 static uint8_t bitmask;
@@ -83,7 +85,7 @@ static uint8_t bitmask;
 static void clearLEDMatrix()
 {
 	for (uint8_t i = 0; i < 8; i++)
-		HAL_GPIO_WritePin(row_port[i], row_pin[i], 1);
+		HAL_GPIO_WritePin(row_port[i], row_pin[i], 0);
 }
 
 /**
@@ -93,11 +95,7 @@ static void clearLEDMatrix()
  */
 static void update_buffer(uint8_t row)
 {
-#ifdef name_display
-	bitmask = word_32_name[row] >> 24;
-#else
 	bitmask = charA[row];
-#endif
 }
 
 /**
@@ -111,7 +109,7 @@ static uint8_t circular_shift_left(uint8_t num)
 	return (num << 1) | msb;
 }
 
-
+/* Implementation ------------------------------------------------------------*/
 
 /**
  * @brief	display 1 row of led matrix
@@ -127,66 +125,66 @@ void updateLEDMatrix(uint8_t index)
 	case 0:
 		update_buffer(0); // get a string to display in row 1
 
-		HAL_GPIO_WritePin(row_port[0], row_pin[0], 0);
+		HAL_GPIO_WritePin(row_port[0], row_pin[0], 1);
 
 		for (uint8_t i = 0; i < 8; i++)
-			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 0 : 1);
+			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 1 : 0);
 		break;
 	case 1:
 		update_buffer(1); // get a string to display in row 2
 
-		HAL_GPIO_WritePin(row_port[1], row_pin[1], 0);
+		HAL_GPIO_WritePin(row_port[1], row_pin[1], 1);
 
 		for (uint8_t i = 0; i < 8; i++)
-			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 0 : 1);
+			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 1 : 0);
 		break;
 	case 2:
 		update_buffer(2); // get a string to display in row 3
 
-		HAL_GPIO_WritePin(row_port[2], row_pin[2], 0);
+		HAL_GPIO_WritePin(row_port[2], row_pin[2], 1);
 
 		for (uint8_t i = 0; i < 8; i++)
-			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 0 : 1);
+			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 1 : 0);
 		break;
 	case 3:
 		update_buffer(3); // get a string to display in row 4
 
-		HAL_GPIO_WritePin(row_port[3], row_pin[3], 0);
+		HAL_GPIO_WritePin(row_port[3], row_pin[3], 1);
 
 		for (uint8_t i = 0; i < 8; i++)
-			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 0 : 1);
+			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 1 : 0);
 		break;
 	case 4:
 		update_buffer(4); // get a string to display in row 5
 
-		HAL_GPIO_WritePin(row_port[4], row_pin[4], 0);
+		HAL_GPIO_WritePin(row_port[4], row_pin[4], 1);
 
 		for (uint8_t i = 0; i < 8; i++)
-			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 0 : 1);
+			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 1 : 0);
 		break;
 	case 5:
 		update_buffer(5); // get a string to display in row 6
 
-		HAL_GPIO_WritePin(row_port[5], row_pin[5], 0);
+		HAL_GPIO_WritePin(row_port[5], row_pin[5], 1);
 
 		for (uint8_t i = 0; i < 8; i++)
-			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 0 : 1);
+			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 1 : 0);
 		break;
 	case 6:
 		update_buffer(6); // get a string to display in row 7
 
-		HAL_GPIO_WritePin(row_port[6], row_pin[6], 0);
+		HAL_GPIO_WritePin(row_port[6], row_pin[6], 1);
 
 		for (uint8_t i = 0; i < 8; i++)
-			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 0 : 1);
+			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 1 : 0);
 		break;
 	case 7:
 		update_buffer(7); // get a string to display in row 8
 
-		HAL_GPIO_WritePin(row_port[7], row_pin[7], 0);
+		HAL_GPIO_WritePin(row_port[7], row_pin[7], 1);
 
 		for (uint8_t i = 0; i < 8; i++)
-			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 0 : 1);
+			HAL_GPIO_WritePin(column_port[i], column_pin[i], (bitmask & (1 << i)) ? 1 : 0);
 		break;
 	}
 }
@@ -201,6 +199,4 @@ void shift_left()
 	for(uint8_t i = 0; i < 8; i++)
 		charA[i] = circular_shift_left(charA[i]);
 }
-
-
 

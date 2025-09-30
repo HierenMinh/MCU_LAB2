@@ -107,20 +107,22 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  if(isTimerExpired(1)) {
-		  ex2Run();
-		  clockRun();
-		  setTimer(1, 100);
-	  }
-	  if(isTimerExpired(3)) {
-		  update7SEG(led7seg_index++);
-		  if(led7seg_index >= 4) {
-		     led7seg_index = 0;
-		  }
-		  setTimer(3, 25);
-	  }
+//	  if(isTimerExpired(1)) {
+//		  HAL_GPIO_TogglePin(ENM0_GPIO_Port, ENM0_Pin);
+////		  ex2Run();
+////		  clockRun();
+////		  setTimer(1, 100);
+//	  }
+//	  if(isTimerExpired(3)) {
+//		  update7SEG(led7seg_index++);
+//		  if(led7seg_index >= 4) {
+//		     led7seg_index = 0;
+//		  }
+//		  setTimer(3, 25);
+//	  }
 	  if(isTimerExpired(TIMER_MATRIX)) {
-		  updateLEDMatrix(ledmatrix_index++);
+		  updateLEDMatrix(ledmatrix_index);
+		  ledmatrix_index = ledmatrix_index + 1;
 		  if(ledmatrix_index >= 8) {
 		     ledmatrix_index = 0;
 		  }

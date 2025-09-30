@@ -16,7 +16,7 @@
 #define TIMER_MATRIX 4
 #define TIMER_SHIFT 5
 #define TIME_MATRIX 1
-#define TIME_SHIFT 25
+#define TIME_SHIFT 100
 
 /* Function prototypes -------------------------------------------------------*/
 void updateLEDMatrix(uint8_t index);

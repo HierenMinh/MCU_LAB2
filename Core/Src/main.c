@@ -109,6 +109,7 @@ int main(void)
 		  ex2Run();
 		  clockRun();
 		  setTimer(1, 100);
+		  HAL_GPIO_TogglePin(LED_TEST_GPIO_Port, LED_TEST_Pin);
 	  }
 	  if(isTimerExpired(3)) {
 		  update7SEG(index++);

@@ -4,3 +4,8 @@
 *.pdsbak
 *.tmp
 *.log
+# Giữ file project chính
+!*.pdsprj
+
+# Bỏ mọi biến thể phát sinh từ .pdsprj (backup, workspace, host-specific,…)
+*.pdsprj.*

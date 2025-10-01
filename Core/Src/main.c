@@ -108,7 +108,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  if(isTimerExpired(1)) {
-		  HAL_GPIO_TogglePin(ENM0_GPIO_Port, ENM0_Pin);
+		  HAL_GPIO_TogglePin(LED_TEST_GPIO_Port, LED_TEST_Pin);
 		  ex2Run();
 		  clockRun();
 		  setTimer(1, 100);
